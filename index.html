@@ -23,8 +23,8 @@
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{scroll-behavior:smooth;background:var(--navy-deep)}
-body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth;background:var(--navy-deep);overflow-x:hidden;overflow-x:clip;max-width:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip;max-width:100%}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--navy)}
 .wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 h1,h2,h3{font-family:var(--display);font-variation-settings:"SOFT" 100;line-height:1.05;text-wrap:balance;margin:0}
@@ -87,7 +87,7 @@ a{color:inherit}
 .hero .wave{position:absolute;bottom:-1px;left:0}
 
 /* ---------- Faixa ---------- */
-.ticker{background:var(--orange);color:#fff;overflow:hidden;transform:rotate(-1.5deg);margin:-14px -10px 0;position:relative;z-index:2}
+.ticker{background:var(--orange);color:#fff;overflow:hidden;transform:rotate(-1.5deg) scaleX(1.03);margin:-14px 0 0;position:relative;z-index:2}
 .ticker div{display:flex;width:max-content;animation:roll 22s linear infinite}
 .ticker span{font-family:var(--display);font-weight:800;font-size:22px;padding:10px 18px;white-space:nowrap}
 .ticker span::after{content:"✦";margin-left:36px;font-size:16px;vertical-align:3px;opacity:.8}
@@ -188,7 +188,7 @@ section{scroll-margin-top:64px}
 .plus .c{font-size:13px;font-weight:700}
 
 /* ---------- Quem somos ---------- */
-.about{background:var(--navy);color:var(--cream);position:relative;margin-top:40px}
+.about{background:var(--navy);color:var(--cream);position:relative;margin-top:40px;overflow-x:clip}
 .about .wave{position:absolute;top:-69px;left:0}
 .about > .wrap{display:grid;grid-template-columns:260px 1fr;grid-template-areas:"photo head" "photo rest";column-gap:44px;row-gap:4px;align-items:center;padding-block:56px 56px}
 .about h2{font-size:clamp(34px,5vw,50px);font-weight:900;margin:6px 0 14px}
