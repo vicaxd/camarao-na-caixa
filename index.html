@@ -565,6 +565,16 @@ function setupHours(){
   $("#status-txt").textContent=open?"Aberto agora":"Fechado agora";
 }
 
+/* ====== Links para o cardápio sempre abrem na aba Camarão ====== */
+function resetMenu(){
+  const first=MENU[0].id;
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.cat===first));
+  renderMenu(first);
+  $("#tabs").scrollLeft=0;
+  try{localStorage.setItem("cnc-tab",first)}catch(_){}
+}
+document.querySelectorAll('a[href="#cardapio"]').forEach(a=>a.addEventListener("click",resetMenu));
+
 /* ====== Feedbacks ====== */
 function renderReviews(){
   const card=r=>`<div class="chat">${r.msgs.map((m,i)=>`<div class="bubble">${esc(m)}${i===r.msgs.length-1?`<time>${r.time}</time>`:""}</div>`).join("")}<span class="via"><i></i>via WhatsApp</span></div>`;
