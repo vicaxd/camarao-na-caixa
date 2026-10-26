@@ -131,6 +131,10 @@ section{scroll-margin-top:64px}
 .info h3{font-size:20px}
 .info .price{font-size:17px}
 .info p{margin-top:2px;font-size:13.5px;line-height:1.45}
+.swap{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-size:12.5px;font-weight:600;color:#3E5A16;background:#E6F0D5;border-radius:99px;padding:4px 10px}
+.swap svg{width:14px;height:14px;flex:none}
+.swap-note{margin:18px 0 0;font-size:14px;padding:8px 14px;line-height:1.35}
+.swap-note svg{width:16px;height:16px}
 .info .tag{margin-bottom:2px}
 .photo{border:0;padding:0;background:var(--kraft-soft);border-radius:14px;overflow:hidden;aspect-ratio:1;width:100%;position:relative;cursor:zoom-in}
 .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
@@ -467,16 +471,16 @@ const CONFIG = {
 
 const MENU = [
   { id:"camarao", label:"Camarão", items:[
-    { id:"cnc", name:"Camarão na Caixa", price:52, star:"O original", desc:"Camarão à milanesa, arroz, fritas crinkle e molho rosé ou mostarda e mel.", slots:[["Camarão à milanesa","prot"],["Arroz","rice"],["Fritas crinkle","fries"]], sauce:true },
-    { id:"cqj", name:"Na Caixa aos Queijos", price:55, desc:"Camarão à milanesa ao molho de queijo, arroz e fritas crinkle.", slots:[["Camarão ao molho de queijo","cheese"],["Arroz","rice"],["Fritas crinkle","fries"]] },
-    { id:"cpa", name:"Na Caixa à Parmegiana", price:55, desc:"Camarão à parmegiana, arroz e fritas crinkle.", slots:[["Camarão à parmegiana","prot"],["Arroz","rice"],["Fritas crinkle","fries"]] },
+    { id:"cnc", swap:true, name:"Camarão na Caixa", price:52, star:"O original", desc:"Camarão à milanesa, arroz, fritas crinkle e molho rosé ou mostarda e mel.", slots:[["Camarão à milanesa","prot"],["Arroz","rice"],["Fritas crinkle","fries"]], sauce:true },
+    { id:"cqj", swap:true, name:"Na Caixa aos Queijos", price:55, desc:"Camarão à milanesa ao molho de queijo, arroz e fritas crinkle.", slots:[["Camarão ao molho de queijo","cheese"],["Arroz","rice"],["Fritas crinkle","fries"]] },
+    { id:"cpa", swap:true, name:"Na Caixa à Parmegiana", price:55, desc:"Camarão à parmegiana, arroz e fritas crinkle.", slots:[["Camarão à parmegiana","prot"],["Arroz","rice"],["Fritas crinkle","fries"]] },
     { id:"cft", name:"Na Caixa Fitness", price:55, desc:"Camarão salteado com legumes, arroz e salada.", slots:[["Camarão com legumes","prot"],["Arroz","rice"],["Salada","salad"]] },
   ]},
   { id:"frango-peixe", label:"Frango e Peixe", items:[
-    { id:"pnc", name:"Peixe na Caixa", price:45, desc:"Iscas de peixe à milanesa, arroz e fritas crinkle.", slots:[["Iscas de peixe","fish"],["Arroz","rice"],["Fritas crinkle","fries"]] },
-    { id:"fnc", name:"Frango na Caixa", price:38, desc:"Frango à milanesa, arroz e fritas crinkle.", slots:[["Frango à milanesa","chicken"],["Arroz","rice"],["Fritas crinkle","fries"]] },
-    { id:"fqj", name:"Frango aos Queijos", price:42, desc:"Frango à milanesa ao molho de queijos, arroz e fritas crinkle.", slots:[["Frango ao molho de queijos","cheese"],["Arroz","rice"],["Fritas crinkle","fries"]] },
-    { id:"fpa", name:"Frango à Parmegiana", price:42, desc:"Frango à parmegiana, arroz e fritas crinkle.", slots:[["Frango à parmegiana","chicken"],["Arroz","rice"],["Fritas crinkle","fries"]] },
+    { id:"pnc", swap:true, name:"Peixe na Caixa", price:45, desc:"Iscas de peixe à milanesa, arroz e fritas crinkle.", slots:[["Iscas de peixe","fish"],["Arroz","rice"],["Fritas crinkle","fries"]] },
+    { id:"fnc", swap:true, name:"Frango na Caixa", price:38, desc:"Frango à milanesa, arroz e fritas crinkle.", slots:[["Frango à milanesa","chicken"],["Arroz","rice"],["Fritas crinkle","fries"]] },
+    { id:"fqj", swap:true, name:"Frango aos Queijos", price:42, desc:"Frango à milanesa ao molho de queijos, arroz e fritas crinkle.", slots:[["Frango ao molho de queijos","cheese"],["Arroz","rice"],["Fritas crinkle","fries"]] },
+    { id:"fpa", swap:true, name:"Frango à Parmegiana", price:42, desc:"Frango à parmegiana, arroz e fritas crinkle.", slots:[["Frango à parmegiana","chicken"],["Arroz","rice"],["Fritas crinkle","fries"]] },
   ]},
   { id:"porcoes", label:"Porções", items:[
     { id:"poc", name:"Porção na Caixa – Camarão", price:90, desc:"Porção de camarão à milanesa, fritas crinkle e molho rosé ou mostarda e mel.", slots:[["Camarão à milanesa","prot"],["Fritas crinkle","fries"]], sauce:true },
@@ -539,6 +543,7 @@ function renderMenu(cat){
         <h3>${it.name}</h3>
         <span class="price">${brl(it.price)}</span>
         <p>${it.desc}</p>
+        ${it.swap?`<span class="swap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Se preferir, trocamos as fritas por salada</span>`:""}
       </div>
     </article>`).join("")}</div>`;
 }
