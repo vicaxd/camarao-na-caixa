@@ -1,3 +1,9 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2D2E66">
 <title>Camarão na Caixa</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Camarão na Caixa — Pratos Express. Cardápio, delivery, WhatsApp e iFood.">
@@ -279,6 +285,9 @@ details.preview pre{white-space:pre-wrap;background:var(--paper);border-radius:1
   .intro{display:none}
 }
 </style>
+</head>
+<body>
+
 
 <!-- Abertura -->
 <div class="intro" aria-hidden="true">
@@ -662,3 +671,6 @@ if(!MENU.some(m=>m.id===start)) start=MENU[0].id;
 document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.cat===start));
 renderMenu(start); renderReviews(); setupLinks(); setupHours(); update(false);
 </script>
+
+</body>
+</html>
