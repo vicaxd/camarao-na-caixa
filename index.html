@@ -119,9 +119,9 @@ section{scroll-margin-top:64px}
 .cta-shrimp{width:84px;height:auto;flex:none;filter:drop-shadow(0 8px 10px rgba(45,46,102,.25));animation:wiggle 3.2s ease-in-out infinite;transform-origin:70% 90%}
 .cta-btn{flex:0 1 auto;white-space:nowrap;line-height:1.1;font-size:20px;padding:16px 28px;font-family:var(--display);font-variation-settings:"SOFT" 100;font-weight:800}
 .cta-btn svg{width:22px;height:22px}
-.float-cta{position:fixed;z-index:55;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:2px;transform:translate(-50%,160%);transition:transform .45s cubic-bezier(.3,1.4,.5,1);pointer-events:none;max-width:calc(100% - 24px)}
+.float-cta{position:fixed;z-index:55;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:2px;transform:translate(-50%,150%);opacity:0;pointer-events:none;max-width:calc(100% - 24px)}
 .float-inner{display:flex;align-items:center;gap:2px;will-change:transform}
-.float-cta.show{transform:translate(-50%,0);pointer-events:auto}
+.float-cta.show{pointer-events:auto}
 .float-cta .cta-btn{box-shadow:0 6px 0 #B5520B,0 16px 30px -10px rgba(35,36,84,.55)}
 .float-cta .cta-shrimp{width:70px}
 @media (max-width:480px){.cta-shrimp{width:62px}.cta-btn{font-size:17px;padding:14px 22px;gap:8px}.cta-btn svg{width:19px;height:19px}}
@@ -586,7 +586,27 @@ document.querySelectorAll('a[href="#cardapio"]').forEach(a=>a.addEventListener("
 /* ====== Botão flutuante de pedido ====== */
 (function(){
   const fl=$("#float-cta");
-  const sync=()=>{ const show=scrollY>40; fl.classList.toggle("show",show); fl.setAttribute("aria-hidden",!show); fl.querySelector("a").tabIndex=show?0:-1; };
+  const shrimp=fl.querySelector(".cta-shrimp"), btn=fl.querySelector(".cta-btn");
+  let shown=false;
+  // entrada e saída animadas em JavaScript (funcionam igual em qualquer celular)
+  const enter=()=>{
+    fl.animate([
+      {transform:"translate(-50%,150%) scale(.85)",opacity:0},
+      {transform:"translate(-50%,-14%) scale(1.03)",opacity:1,offset:.6},
+      {transform:"translate(-50%,4%) scale(.99)",opacity:1,offset:.82},
+      {transform:"translate(-50%,0) scale(1)",opacity:1}
+    ],{duration:900,easing:"cubic-bezier(.22,.8,.3,1)",fill:"forwards"});
+    btn.animate([{transform:"scale(1)"},{transform:"scale(1.06)"},{transform:"scale(1)"}],{duration:420,delay:900,easing:"ease-in-out"});
+  };
+  const leave=()=>{
+    fl.animate([
+      {transform:"translate(-50%,0) scale(1)",opacity:1},
+      {transform:"translate(-50%,150%) scale(.9)",opacity:0}
+    ],{duration:380,easing:"cubic-bezier(.5,0,.75,0)",fill:"forwards"});
+  };
+  const sync=()=>{ const show=scrollY>40; if(show===shown) return; shown=show;
+    show?enter():leave();
+    fl.classList.toggle("show",show); fl.setAttribute("aria-hidden",!show); fl.querySelector("a").tabIndex=show?0:-1; };
   window.addEventListener("scroll",sync,{passive:true}); sync();
   // flutuação feita em JavaScript para aparecer igual em todos os celulares
   const inner=fl.querySelector(".float-inner");
