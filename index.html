@@ -252,6 +252,8 @@ section{scroll-margin-top:64px}
 footer{background:var(--navy-deep);color:rgba(255,248,238,.7);font-size:13px;margin-top:0}
 #peca .sec{padding-bottom:48px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding-block:28px calc(116px + env(safe-area-inset-bottom,0px))}
+.foot-brand{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px}
+.foot-brand .sep{opacity:.45;font-size:16px}
 footer strong{font-family:var(--display);color:var(--cream);font-size:18px}
 
 /* ---------- Carrinho ---------- */
@@ -433,7 +435,7 @@ details.preview pre{white-space:pre-wrap;background:var(--paper);border-radius:1
 
 <footer>
   <div class="wrap">
-    <div><strong>Camarão na Caixa</strong><br>Pratos express</div>
+    <div class="foot-brand"><strong>Camarão na Caixa</strong><span class="sep" aria-hidden="true">|</span><span>Pratos express</span></div>
     <div id="insta">@camaraonacaixa_</div>
   </div>
 </footer>
